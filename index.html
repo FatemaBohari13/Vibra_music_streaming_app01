@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibra Music App</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #090612;
+  --card: #120b22;
+  --card2: #1b1230;
+  --purple: #8b5cf6;
+  --pink: #ec4899;
+  --white: #f8f5ff;
+  --muted: #a9a0b8;
+}
+
+body {
+  background: #020107;
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: 100%;
+  max-width: 393px;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 25px;
+  padding-bottom: 100px;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* ---------------- WELCOME ---------------- */
+
+.welcome {
+  text-align: center;
+  padding-top: 70px;
+}
+
+.welcome-box {
+  background: var(--card);
+  border-radius: 28px;
+  height: 440px;
+  padding: 48px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo {
+  width: 105px;
+  height: 105px;
+  margin: auto;
+  border-radius: 30px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 65px;
+  font-weight: bold;
+  box-shadow: 0 20px 50px rgba(139,92,246,.3);
+}
+
+.welcome h1 {
+  font-size: 48px;
+  margin-top: 40px;
+}
+
+.tagline {
+  color: #d8b4fe;
+  font-size: 21px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.description {
+  color: var(--muted);
+  margin-top: 15px;
+  line-height: 1.5;
+}
+
+.primary-btn {
+  width: 100%;
+  height: 55px;
+  border: none;
+  border-radius: 16px;
+  margin-top: 60px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #e9d5ff;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.footer {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 75px;
+}
+
+/* ---------------- LOGIN / SIGNUP ---------------- */
+
+.back {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 30px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.form h2 {
+  font-size: 34px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.field {
+  margin-top: 24px;
+}
+
+.field label {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.field input,
+.search-input {
+  width: 100%;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: var(--card);
+  color: white;
+  padding: 0 15px;
+  outline: none;
+}
+
+.field input:focus,
+.search-input:focus {
+  border-color: var(--purple);
+}
+
+.forgot {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #c4b5fd;
+  text-align: right;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.form .primary-btn {
+  margin-top: 25px;
+}
+
+.divider {
+  text-align: center;
+  color: var(--muted);
+  margin: 25px 0 18px;
+  font-size: 13px;
+}
+
+.social-btn {
+  width: 100%;
+  height: 50px;
+  background: var(--card);
+  color: white;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.bottom-text {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 25px;
+  font-size: 14px;
+}
+
+.bottom-text button {
+  background: none;
+  border: none;
+  color: #d8b4fe;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ---------------- HOME ---------------- */
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.small-text {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.home-title {
+  font-size: 30px;
+  margin-top: 5px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,var(--purple),var(--pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.search-box {
+  margin-top: 23px;
+  height: 52px;
+  width: 100%;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  margin-bottom: 15px;
+}
+
+.section-title h3 {
+  font-size: 19px;
+}
+
+.see-all {
+  background: none;
+  border: none;
+  color: #c4b5fd;
+  cursor: pointer;
+}
+
+.playlists {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+}
+
+.playlist {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cover {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 15px;
+  background: linear-gradient(135deg,#31205e,#ec4899);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+}
+
+.playlist:nth-child(2) .cover {
+  background: linear-gradient(135deg,#4c1d95,#7c3aed);
+}
+
+.playlist:nth-child(3) .cover {
+  background: linear-gradient(135deg,#31123f,#db2777);
+}
+
+.playlist strong {
+  display: block;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.playlist span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.song-list {
+  display: grid;
+  gap: 12px;
+}
+
+.song {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.song-image {
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+  background: linear-gradient(135deg,#6d28d9,#db2777);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.song-info {
+  flex: 1;
+}
+
+.song-info strong {
+  display: block;
+  font-size: 14px;
+}
+
+.song-info span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.mini-play {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--card2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------------- PLAYER ---------------- */
+
+.player {
+  text-align: center;
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.player-header button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.album {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 30% 20%,#ec4899,transparent 30%),
+    linear-gradient(135deg,#2e1065,#7e22ce 55%,#be185d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 90px;
+  box-shadow: 0 25px 70px rgba(139,92,246,.2);
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  margin-top: 25px;
+}
+
+.track-details {
+  flex: 1;
+}
+
+.track h2 {
+  font-size: 26px;
+}
+
+.track p {
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.heart {
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #e9d5ff;
+  cursor: pointer;
+}
+
+.progress {
+  width: 100%;
+  margin-top: 28px;
+  accent-color: var(--purple);
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.control {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.play-button {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,var(--purple),var(--pink));
+  color: white;
+  font-size: 20px;
+}
+
+.volume {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.volume input {
+  flex: 1;
+  accent-color: var(--purple);
+}
+
+/* ---------------- SEARCH ---------------- */
+
+.screen-heading {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.moods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mood {
+  height: 65px;
+  border-radius: 15px;
+  background: var(--card);
+  color: white;
+  border: 1px solid rgba(255,255,255,.08);
+  text-align: left;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.mood span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.artist-list {
+  display: grid;
+  gap: 15px;
+}
+
+.artist {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.artist-photo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,var(--purple),var(--pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.artist span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* ---------------- LIBRARY ---------------- */
+
+.library-card {
+  width: 100%;
+  height: 67px;
+  margin-top: 12px;
+  border-radius: 16px;
+  background: var(--card);
+  color: white;
+  border: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 0 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.library-icon {
+  font-size: 23px;
+}
+
+.library-info {
+  flex: 1;
+}
+
+.library-info span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.recent {
+  margin-top: 30px;
+}
+
+.recent h3 {
+  margin-bottom: 15px;
+}
+
+/* ---------------- NAVIGATION ---------------- */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 393px;
+  height: 68px;
+  background: rgba(18,11,34,.97);
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: none;
+  grid-template-columns: repeat(4,1fr);
+  z-index: 100;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.bottom-nav button span {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+.bottom-nav button.active {
+  color: #e9d5ff;
+}
+
+/* ---------------- TOAST ---------------- */
+
+.toast {
+  position: fixed;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #24173b;
+  color: white;
+  padding: 11px 17px;
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .25s;
+  z-index: 200;
+  font-size: 13px;
+}
+
+.toast.show {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- ================= WELCOME ================= -->
+
+<section id="welcome" class="screen active welcome">
+
+  <div class="welcome-box">
+
+    <div class="logo">V</div>
+
+    <h1>Vibra</h1>
+
+    <p class="tagline">
+      Your music, your mood.
+    </p>
+
+    <p class="description">
+      Discover songs that move with how you feel.
+    </p>
+
+  </div>
+
+  <button class="primary-btn" onclick="showScreen('signup')">
+    Get Started →
+  </button>
+
+  <button class="link-btn" onclick="showScreen('login')">
+    I already have an account
+  </button>
+
+  <p class="footer">
+    Listen. Feel. Repeat.
+  </p>
+
+</section>
+
+
+<!-- ================= LOGIN ================= -->
+
+<section id="login" class="screen form">
+
+  <button class="back" onclick="showScreen('welcome')">
+    ‹
+  </button>
+
+  <h2>Welcome back</h2>
+
+  <p class="subtitle">
+    Sign in to continue your Vibra journey.
+  </p>
+
+  <div class="field">
+    <label>EMAIL</label>
+    <input type="email" id="loginEmail" placeholder="you@example.com">
+  </div>
+
+  <div class="field">
+    <label>PASSWORD</label>
+    <input type="password" id="loginPassword" placeholder="••••••••">
+  </div>
+
+  <button class="forgot" onclick="notify('Password reset coming soon')">
+    Forgot password?
+  </button>
+
+  <button class="primary-btn" onclick="login()">
+    Continue →
+  </button>
+
+  <div class="divider">
+    or continue with
+  </div>
+
+  <button class="social-btn" onclick="login()">
+    Continue with Google
+  </button>
+
+  <p class="bottom-text">
+    Don't have an account?
+    <button onclick="showScreen('signup')">
+      Sign up
+    </button>
+  </p>
+
+</section>
+
+
+<!-- ================= SIGNUP ================= -->
+
+<section id="signup" class="screen form">
+
+  <button class="back" onclick="showScreen('welcome')">
+    ‹
+  </button>
+
+  <h2>Create your account</h2>
+
+  <p class="subtitle">
+    Make Vibra feel like yours.
+  </p>
+
+  <div class="field">
+    <label>NAME</label>
+    <input type="text" id="signupName" placeholder="Your name">
+  </div>
+
+  <div class="field">
+    <label>EMAIL</label>
+    <input type="email" id="signupEmail" placeholder="you@example.com">
+  </div>
+
+  <div class="field">
+    <label>PASSWORD</label>
+    <input type="password" id="signupPassword" placeholder="Create a password">
+  </div>
+
+  <button class="primary-btn" onclick="signup()">
+    Create Account →
+  </button>
+
+  <div class="divider">
+    or sign up with
+  </div>
+
+  <button class="social-btn" onclick="signup()">
+    Continue with Google
+  </button>
+
+  <p class="bottom-text">
+    Already have an account?
+    <button onclick="showScreen('login')">
+      Log in
+    </button>
+  </p>
+
+</section>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="screen">
+
+  <div class="top">
+
+    <div>
+      <p class="small-text">Good evening</p>
+      <h1 class="home-title">Find your vibe.</h1>
+    </div>
+
+    <div class="avatar">F</div>
+
+  </div>
+
+
+  <button class="search-box" onclick="showScreen('search')">
+    ⌕ &nbsp; Search songs, artists, albums
+  </button>
+
+
+  <div class="section-title">
+    <h3>Made for you</h3>
+    <button class="see-all" onclick="showScreen('search')">
+      See all
+    </button>
+  </div>
+
+
+  <div class="playlists">
+
+    <button class="playlist"
+      onclick="openPlayer('Midnight Vibes','Vibra Sessions')">
+
+      <div class="cover">♫</div>
+
+      <strong>Midnight Vibes</strong>
+      <span>Chill mix</span>
+
+    </button>
+
+
+    <button class="playlist"
+      onclick="openPlayer('Purple Skies','Vibra Sessions')">
+
+      <div class="cover">♫</div>
+
+      <strong>Purple Skies</strong>
+      <span>Mood mix</span>
+
+    </button>
+
+
+    <button class="playlist"
+      onclick="openPlayer('After Hours','Vibra Sessions')">
+
+      <div class="cover">♫</div>
+
+      <strong>After Hours</strong>
+      <span>Late night</span>
+
+    </button>
+
+  </div>
+
+
+  <div class="section-title">
+    <h3>Trending now</h3>
+  </div>
+
+
+  <div class="song-list">
+
+    <button class="song"
+      onclick="openPlayer('Focus Flow','Vibra Sessions')">
+
+      <div class="song-image">♪</div>
+
+      <div class="song-info">
+        <strong>Focus Flow</strong>
+        <span>Lo-fi • 3:42</span>
+      </div>
+
+      <span class="mini-play">▶</span>
+
+    </button>
+
+
+    <button class="song"
+      onclick="openPlayer('Weekend Energy','Vibra Sessions')">
+
+      <div class="song-image">♪</div>
+
+      <div class="song-info">
+        <strong>Weekend Energy</strong>
+        <span>Dance • 3:18</span>
+      </div>
+
+      <span class="mini-play">▶</span>
+
+    </button>
+
+
+    <button class="song"
+      onclick="openPlayer('Soft Hearts','Vibra Sessions')">
+
+      <div class="song-image">♪</div>
+
+      <div class="song-info">
+        <strong>Soft Hearts</strong>
+        <span>Romantic • 4:01</span>
+      </div>
+
+      <span class="mini-play">▶</span>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= MUSIC PLAYER ================= -->
+
+<section id="player" class="screen player">
+
+  <div class="player-header">
+
+    <button onclick="showScreen('home')">
+      ‹
+    </button>
+
+    <span>Now playing</span>
+
+    <button onclick="notify('More options coming soon')">
+      ⋯
+    </button>
+
+  </div>
+
+
+  <div class="album">
+    ♫
+  </div>
+
+
+  <div class="track">
+
+    <div class="track-details">
+
+      <h2 id="trackTitle">
+        Midnight Vibes
+      </h2>
+
+      <p id="trackArtist">
+        Vibra Sessions
+      </p>
+
+    </div>
+
+    <button class="heart"
+      id="heart"
+      onclick="toggleFavorite()">
+      ♡
+    </button>
+
+  </div>
+
+
+  <input
+    id="progress"
+    class="progress"
+    type="range"
+    min="0"
+    max="222"
+    value="84"
+    oninput="updateTime()"
+  >
+
+
+  <div class="times">
+
+    <span id="currentTime">
+      1:24
+    </span>
+
+    <span>
+      3:42
+    </span>
+
+  </div>
+
+
+  <div class="controls">
+
+    <button class="control"
+      onclick="notify('Repeat enabled')">
+      ↶
+    </button>
+
+    <button class="control"
+      onclick="notify('Previous song')">
+      ‹
+    </button>
+
+    <button
+      id="playButton"
+      class="play-button"
+      onclick="togglePlay()">
+      ▶
+    </button>
+
+    <button class="control"
+      onclick="notify('Next song')">
+      ›
+    </button>
+
+    <button class="control"
+      onclick="notify('Shuffle enabled')">
+      ↷
+    </button>
+
+  </div>
+
+
+  <div class="volume">
+
+    🔊
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="70"
+    >
+
+  </div>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<section id="search" class="screen">
+
+  <h2 class="screen-heading">
+    Search
+  </h2>
+
+  <input
+    id="searchInput"
+    class="search-input"
+    type="search"
+    placeholder="⌕  What do you want to hear?"
+    oninput="searchMusic()"
+  >
+
+
+  <div id="searchResults"></div>
+
+
+  <div id="browse">
+
+    <div class="section-title">
+      <h3>Browse by mood</h3>
+    </div>
+
+
+    <div class="moods">
+
+      <button class="mood"
+        onclick="openPlayer('Pop Mix','Vibra Radio')">
+        <strong>Pop</strong>
+        <span>Energetic</span>
+      </button>
+
+      <button class="mood"
+        onclick="openPlayer('Rock Nights','Vibra Radio')">
+        <strong>Rock</strong>
+        <span>Bold</span>
+      </button>
+
+      <button class="mood"
+        onclick="openPlayer('Lo-fi Dreams','Vibra Radio')">
+        <strong>Lo-fi</strong>
+        <span>Chill</span>
+      </button>
+
+      <button class="mood"
+        onclick="openPlayer('Dance All Night','Vibra Radio')">
+        <strong>Dance</strong>
+        <span>Upbeat</span>
+      </button>
+
+      <button class="mood"
+        onclick="openPlayer('Chill Waves','Vibra Radio')">
+        <strong>Chill</strong>
+        <span>Relaxed</span>
+      </button>
+
+      <button class="mood"
+        onclick="openPlayer('Soft Hearts','Vibra Radio')">
+        <strong>Romantic</strong>
+        <span>Soft</span>
+      </button>
+
+    </div>
+
+
+    <div class="section-title">
+      <h3>Popular artists</h3>
+    </div>
+
+
+    <div class="artist-list">
+
+      <button class="artist"
+        onclick="openPlayer('Luna Ray Radio','Luna Ray')">
+
+        <div class="artist-photo">
+          L
+        </div>
+
+        <div>
+          <strong>Luna Ray</strong>
+          <span>12.4M listeners</span>
+        </div>
+
+      </button>
+
+
+      <button class="artist"
+        onclick="openPlayer('Nova Bloom Radio','Nova Bloom')">
+
+        <div class="artist-photo">
+          N
+        </div>
+
+        <div>
+          <strong>Nova Bloom</strong>
+          <span>9.8M listeners</span>
+        </div>
+
+      </button>
+
+
+      <button class="artist"
+        onclick="openPlayer('Vibra Collective','Vibra Collective')">
+
+        <div class="artist-photo">
+          V
+        </div>
+
+        <div>
+          <strong>Vibra Collective</strong>
+          <span>8.1M listeners</span>
+        </div>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= LIBRARY ================= -->
+
+<section id="library" class="screen">
+
+  <h2 class="screen-heading">
+    Your Library
+  </h2>
+
+  <p class="subtitle">
+    Everything you love, in one place.
+  </p>
+
+
+  <button class="library-card"
+    onclick="openPlayer('Favorite Tracks','Your Library')">
+
+    <span class="library-icon">
+      ♡
+    </span>
+
+    <div class="library-info">
+      <strong>Favorite tracks</strong>
+      <span>24 songs</span>
+    </div>
+
+    <b>›</b>
+
+  </button>
+
+
+  <button class="library-card"
+    onclick="openPlayer('Saved Songs','Your Library')">
+
+    <span class="library-icon">
+      ♫
+    </span>
+
+    <div class="library-info">
+      <strong>Saved songs</strong>
+      <span>68 songs</span>
+    </div>
+
+    <b>›</b>
+
+  </button>
+
+
+  <button class="library-card"
+    onclick="notify('Your playlists opened')">
+
+    <span class="library-icon">
+      ▣
+    </span>
+
+    <div class="library-info">
+      <strong>Your playlists</strong>
+      <span>8 playlists</span>
+    </div>
+
+    <b>›</b>
+
+  </button>
+
+
+  <button class="library-card"
+    onclick="notify('Downloads opened')">
+
+    <span class="library-icon">
+      ↓
+    </span>
+
+    <div class="library-info">
+      <strong>Downloaded</strong>
+      <span>31 songs</span>
+    </div>
+
+    <b>›</b>
+
+  </button>
+
+
+  <div class="recent">
+
+    <h3>Recently added</h3>
+
+
+    <button class="song"
+      onclick="openPlayer('Midnight Vibes','Vibra Sessions')">
+
+      <div class="song-image">♪</div>
+
+      <div class="song-info">
+        <strong>Midnight Vibes</strong>
+        <span>Vibra Sessions</span>
+      </div>
+
+    </button>
+
+
+    <button class="song"
+      onclick="openPlayer('Soft Hearts','Vibra Sessions')">
+
+      <div class="song-image">♪</div>
+
+      <div class="song-info">
+        <strong>Soft Hearts</strong>
+        <span>Vibra Sessions</span>
+      </div>
+
+    </button>
+
+
+    <button class="song"
+      onclick="openPlayer('Purple Skies','Vibra Sessions')">
+
+      <div class="song-image">♪</div>
+
+      <div class="song-info">
+        <strong>Purple Skies</strong>
+        <span>Vibra Sessions</span>
+      </div>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= BOTTOM NAVIGATION ================= -->
+
+<nav id="bottomNav" class="bottom-nav">
+
+  <button
+    data-screen="home"
+    onclick="showScreen('home')"
+    class="active">
+
+    <span>⌂</span>
+    Home
+
+  </button>
+
+
+  <button
+    data-screen="search"
+    onclick="showScreen('search')">
+
+    <span>⌕</span>
+    Search
+
+  </button>
+
+
+  <button
+    data-screen="library"
+    onclick="showScreen('library')">
+
+    <span>♡</span>
+    Favorites
+
+  </button>
+
+
+  <button
+    data-screen="library"
+    onclick="showScreen('library')">
+
+    <span>♫</span>
+    Library
+
+  </button>
+
+</nav>
+
+
+<div id="toast" class="toast"></div>
+
+</div>
+
+
+<script>
+
+let playing = false;
+let favorite = false;
+
+
+/* CHANGE SCREEN */
+
+function showScreen(screenID) {
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
+      screen.classList.remove("active");
+    });
+
+  document
+    .getElementById(screenID)
+    .classList.add("active");
+
+
+  const nav =
+    document.getElementById("bottomNav");
+
+
+  if (
+    screenID === "home" ||
+    screenID === "search" ||
+    screenID === "library"
+  ) {
+
+    nav.style.display = "grid";
+
+  } else {
+
+    nav.style.display = "none";
+
+  }
+
+
+  document
+    .querySelectorAll(".bottom-nav button")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.screen === screenID
+      );
+
+    });
+
+
+  window.scrollTo(0,0);
+}
+
+
+/* LOGIN */
+
+function login() {
+
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  if (!email) {
+
+    notify("Please enter your email");
+
+    return;
+
+  }
+
+  showScreen("home");
+}
+
+
+/* SIGNUP */
+
+function signup() {
+
+  const name =
+    document.getElementById("signupName").value.trim();
+
+  const email =
+    document.getElementById("signupEmail").value.trim();
+
+
+  if (!name || !email) {
+
+    notify("Please complete your details");
+
+    return;
+
+  }
+
+  showScreen("home");
+}
+
+
+/* OPEN MUSIC PLAYER */
+
+function openPlayer(title, artist) {
+
+  document.getElementById("trackTitle")
+    .textContent = title;
+
+  document.getElementById("trackArtist")
+    .textContent = artist;
+
+  document.getElementById("progress").value = 84;
+
+  updateTime();
+
+  showScreen("player");
+}
+
+
+/* PLAY / PAUSE */
+
+function togglePlay() {
+
+  playing = !playing;
+
+  document.getElementById("playButton")
+    .textContent = playing ? "Ⅱ" : "▶";
+
+  notify(
+    playing ? "Playing" : "Paused"
+  );
+}
+
+
+/* FAVORITE */
+
+function toggleFavorite() {
+
+  favorite = !favorite;
+
+  document.getElementById("heart")
+    .textContent = favorite ? "♥" : "♡";
+
+  notify(
+    favorite
+      ? "Added to favorites"
+      : "Removed from favorites"
+  );
+}
+
+
+/* PROGRESS */
+
+function updateTime() {
+
+  const seconds =
+    Number(
+      document.getElementById("progress").value
+    );
+
+  const minutes =
+    Math.floor(seconds / 60);
+
+  const remaining =
+    String(seconds % 60).padStart(2,"0");
+
+
+  document.getElementById("currentTime")
+    .textContent =
+      minutes + ":" + remaining;
+}
+
+
+/* SEARCH */
+
+function searchMusic() {
+
+  const query =
+    document
+      .getElementById("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const results =
+    document.getElementById("searchResults");
+
+  const browse =
+    document.getElementById("browse");
+
+
+  if (!query) {
+
+    results.innerHTML = "";
+
+    browse.style.display = "block";
+
+    return;
+
+  }
+
+
+  browse.style.display = "none";
+
+
+  const songs = [
+
+    ["Midnight Vibes","Vibra Sessions"],
+    ["Purple Skies","Vibra Sessions"],
+    ["After Hours","Vibra Sessions"],
+    ["Focus Flow","Vibra Sessions"],
+    ["Weekend Energy","Vibra Sessions"],
+    ["Soft Hearts","Vibra Sessions"],
+    ["Luna Ray Radio","Luna Ray"],
+    ["Nova Bloom Radio","Nova Bloom"]
+
+  ];
+
+
+  const matches =
+    songs.filter(song =>
+      song.join(" ")
+        .toLowerCase()
+        .includes(query)
+    );
+
+
+  if (matches.length === 0) {
+
+    results.innerHTML =
+      `<p class="subtitle" style="margin-top:20px">
+        No results found.
+      </p>`;
+
+    return;
+
+  }
+
+
+  results.innerHTML =
+    `<div class="song-list" style="margin-top:20px">
+      ${
+        matches.map(song => `
+          <button
+            class="song"
+            onclick="openPlayer('${song[0]}','${song[1]}')">
+
+            <div class="song-image">
+              ♪
+            </div>
+
+            <div class="song-info">
+
+              <strong>
+                ${song[0]}
+              </strong>
+
+              <span>
+                ${song[1]}
+              </span>
+
+            </div>
+
+            <span class="mini-play">
+              ▶
+            </span>
+
+          </button>
+        `).join("")
+      }
+    </div>`;
+}
+
+
+/* MESSAGE */
+
+let toastTimer;
+
+function notify(message) {
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    },1800);
+}
+
+</script>
+
+</body>
+</html>
