@@ -38,8 +38,7 @@ The app demonstrates modern UI design, responsive layouts, DOM manipulation, dyn
 [Add your GitHub Pages link here]
 
 ## 📂 Repository Link
-
-[Add your GitHub repository link here]
+https://github.com/FatemaBohari13/Vibra_music_streaming_app01/
 
 ## 🎯 Learning Outcomes
 
